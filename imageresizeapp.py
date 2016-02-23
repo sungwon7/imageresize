@@ -18,6 +18,7 @@ import imageresize
 
 app = Flask(__name__)
 UPLOAD_PATH = "upload"
+app.config['UPLOAD_PATH'] = os.path.join(app.root_path, UPLOAD_PATH)
 
 @app.route('/')
 def index():
@@ -56,5 +57,4 @@ def download(filename):
 	return send_from_directory(directory=app.config['UPLOAD_PATH'], filename=filename)
 
 if __name__ == '__main__':
-	app.config['UPLOAD_PATH'] = os.path.join(app.root_path, UPLOAD_PATH)
 	app.run(debug=True)
